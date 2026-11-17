@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DeskWallpaper.App/DeskWallpaper.App.csproj">
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="src/DeskWallpaper.Cli/DeskWallpaper.Cli.csproj" />
+    <Project Path="src/DeskWallpaper.Nucleo/DeskWallpaper.Nucleo.csproj" />
+    <Project Path="src/DeskWallpaper.Windows/DeskWallpaper.Windows.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DeskWallpaper.Pruebas/DeskWallpaper.Pruebas.csproj" />
+  </Folder>
+</Solution>

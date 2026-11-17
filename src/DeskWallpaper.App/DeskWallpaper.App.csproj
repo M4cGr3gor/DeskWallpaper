@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.22621.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.22000.0</TargetPlatformMinVersion>
+    <RootNamespace>DeskWallpaper.App</RootNamespace>
+    <AssemblyName>DeskWallpaper</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Recursos\DeskWallpaper.ico</ApplicationIcon>
+    <Platforms>x64</Platforms>
+    <!-- Misma carpeta de salida tanto si se compila la solución (x64) como el proyecto suelto. -->
+    <AppendPlatformToOutputPath>false</AppendPlatformToOutputPath>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <UseWinUI>true</UseWinUI>
+    <WindowsPackageType>None</WindowsPackageType>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <SelfContained>true</SelfContained>
+    <!-- Sin esto, «dotnet publish» de una app sin paquete no copia DeskWallpaper.pri ni los .xbf y no arranca. -->
+    <EnableMsixTooling>true</EnableMsixTooling>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.6.5" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2957" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Icono de la ventana y de la barra de tareas (el del .exe va con ApplicationIcon). -->
+    <Content Include="Recursos\DeskWallpaper.ico" CopyToOutputDirectory="PreserveNewest" />
+    <!-- El ayudante de fondos animados (C++), compilado por src\DeskWallpaper.Animado\compilar.cmd: va junto al programa. -->
+    <Content Include="..\DeskWallpaper.Animado\bin\DeskWallpaper.Animado.exe" Link="DeskWallpaper.Animado.exe"
+             CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\DeskWallpaper.Animado\bin\DeskWallpaper.Animado.exe')" />
+    <None Remove="LEEME.txt" />
+    <None Remove="Recursos\DeskWallpaper-256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeskWallpaper.Nucleo\DeskWallpaper.Nucleo.csproj" />
+    <ProjectReference Include="..\DeskWallpaper.Windows\DeskWallpaper.Windows.csproj" />
+  </ItemGroup>
+</Project>

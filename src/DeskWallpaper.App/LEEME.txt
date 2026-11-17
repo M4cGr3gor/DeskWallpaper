@@ -1,0 +1,27 @@
+DeskWallpaper — cómo instalarlo
+==============================
+
+1. Mueve la carpeta «DeskWallpaper» (la que está junto a este archivo) a su sitio definitivo,
+   por ejemplo C:\Programas\DeskWallpaper. Va completa: no hace falta instalar .NET ni nada más.
+
+2. Para abrirlo, ejecuta DeskWallpaper.exe. Si quieres, crea un acceso directo
+   (clic derecho en DeskWallpaper.exe → Mostrar más opciones → Enviar a → Escritorio).
+
+3. Tus datos no están en esa carpeta: están en %LOCALAPPDATA%\DeskWallpaper
+   (configuración, biblioteca, historial, miniaturas, modelos de IA descargados y error.log).
+   Por eso puedes mover o sustituir la carpeta del programa sin perder nada.
+
+Fondos animados
+---------------
+
+Si pones un fondo animado, un programa pequeño (DeskWallpaper.Animado.exe, en la misma carpeta) lo
+reproduce y se pone en marcha solo al iniciar Windows. Para quitarlo, aplica solo imágenes desde
+DeskWallpaper o usa «Quitar fondo animado» en su icono junto al reloj.
+
+Para actualizar a una versión nueva o mover la carpeta del programa:
+   1. Cierra DeskWallpaper.
+   2. Si hay un fondo animado, pulsa su icono junto al reloj y elige «Cerrar (vuelve al reiniciar)».
+      Mientras está en marcha, Windows no deja sustituir ni mover sus archivos.
+   3. Sustituye (o mueve) la carpeta entera.
+   4. Abre DeskWallpaper una vez: si la has movido, corrige solo el arranque con Windows.
+   El fondo animado vuelve al reiniciar el equipo (o al pulsar Aplicar en DeskWallpaper).

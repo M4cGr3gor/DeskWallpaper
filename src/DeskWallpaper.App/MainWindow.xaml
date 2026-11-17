@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="DeskWallpaper.App.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vistas="using:DeskWallpaper.App.Vistas"
+    Title="DeskWallpaper">
+    <Grid Padding="20,16,24,16" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid ColumnSpacing="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Spacing="2" Margin="8,0,0,0">
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <TextBlock Text="Fondos de escritorio" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" />
+                    <!-- Dos apartados distintos: cada uno con su biblioteca y sus opciones. -->
+                    <SelectorBar x:Name="Pestanas" VerticalAlignment="Center">
+                        <SelectorBarItem x:Name="PestanaImagenes" Text="Imágenes" />
+                        <SelectorBarItem x:Name="PestanaAnimados" Text="Fondos animados" />
+                    </SelectorBar>
+                </StackPanel>
+                <TextBlock x:Name="Subtitulo" Text="Arrastra imágenes de la biblioteca a los monitores, encuádralas y pulsa Aplicar."
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            </StackPanel>
+            <StackPanel x:Name="BarraSuperior" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" Spacing="8">
+                <AutoSuggestBox x:Name="Buscador" Width="320" PlaceholderText="Buscar por nombre o etiqueta"
+                                QueryIcon="Find" VerticalAlignment="Center" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Los huecos entre paneles son asas para cambiar su ancho. -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="ColumnaNavegacion" Width="190" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition x:Name="ColumnaPanel" Width="236" />
+            </Grid.ColumnDefinitions>
+
+            <vistas:Navegacion x:Name="Nav" />
+            <vistas:Divisor x:Name="DivisorNavegacion" Grid.Column="1" />
+
+            <Grid x:Name="ZonaCentral" Grid.Column="2" RowSpacing="8">
+                <Grid.RowDefinitions>
+                    <!-- Lienzo algo más pequeño que la biblioteca, sin quedarse corto. -->
+                    <RowDefinition Height="4*" MinHeight="220" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5*" MinHeight="240" />
+                </Grid.RowDefinitions>
+                <vistas:LienzoMonitores x:Name="Lienzo" />
+                <!-- Quita todas las imágenes y todos los enlaces; se puede deshacer. -->
+                <Button x:Name="BotonLimpiar" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,4,0"
+                        Click="Limpiar_Click" ToolTipService.ToolTip="Quitar todas las imágenes del lienzo y separar todos los monitores"
+                        AutomationProperties.Name="Limpiar lienzo">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <FontIcon Glyph="&#xE894;" FontSize="14" />
+                        <TextBlock Text="Limpiar" />
+                    </StackPanel>
+                </Button>
+                <Grid Grid.Row="1" ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TituloSeccion" Style="{StaticResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" />
+                    <TextBlock x:Name="TextoProgreso" Grid.Column="1" VerticalAlignment="Center" FontSize="12"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    <StackPanel x:Name="ControlTamano" Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                        <!-- Vuelve a revisar las carpetas. -->
+                        <Button x:Name="BotonRefrescar" Click="Refrescar_Click" Padding="8,6,8,6" Margin="0,0,8,0"
+                                VerticalAlignment="Center" AutomationProperties.Name="Refrescar la biblioteca"
+                                ToolTipService.ToolTip="Volver a revisar las carpetas por si hay algo nuevo">
+                            <FontIcon Glyph="&#xE72C;" FontSize="14" />
+                        </Button>
+                        <FontIcon Glyph="&#xE8B9;" FontSize="12" VerticalAlignment="Center" />
+                        <Slider x:Name="DeslizadorMiniaturas" Width="140" Minimum="120" Maximum="240" StepFrequency="10"
+                                VerticalAlignment="Center" ToolTipService.ToolTip="Tamaño de las miniaturas" />
+                        <FontIcon Glyph="&#xE8B9;" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+                <ContentPresenter x:Name="ZonaInferior" Grid.Row="2" />
+            </Grid>
+
+            <vistas:Divisor x:Name="DivisorPanel" Grid.Column="3" />
+            <vistas:PanelZona x:Name="Panel" Grid.Column="4" />
+
+            <!-- "Buscar online" ocupa todo el centro. -->
+            <ContentPresenter x:Name="VistaBusqueda" Grid.Column="2" Grid.ColumnSpan="3" Visibility="Collapsed" />
+        </Grid>
+
+        <Grid Grid.Row="2" ColumnSpacing="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <vistas:BarraEstado x:Name="Estado" Margin="8,0,0,0" />
+        <StackPanel x:Name="BarraAcciones" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button x:Name="BotonProbar" Content="Probar 15 s" MinWidth="120" Click="Probar_Click"
+                    ToolTipService.ToolTip="Pone los fondos y pregunta si mantenerlos; si no contestas, vuelve a los anteriores" />
+            <Button x:Name="BotonAplicar" Content="Aplicar" Style="{StaticResource AccentButtonStyle}"
+                    MinWidth="120" Click="Aplicar_Click" />
+        </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
