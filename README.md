@@ -93,3 +93,7 @@ No van incluidos en el repositorio: el programa los descarga de Hugging Face la 
 | LaMa | Quitar marcas | [Carve/LaMa-ONNX](https://huggingface.co/Carve/LaMa-ONNX) | Apache-2.0 (entrenado con Places2, CC-BY 4.0) |
 | Real-ESRGAN ×4 | Ampliar | [SceneWorks/real-esrgan-onnx](https://huggingface.co/SceneWorks/real-esrgan-onnx) | BSD-3-Clause |
 | SCUNet | Quitar ruido | [Heliosoph/scunet-onnx](https://huggingface.co/Heliosoph/scunet-onnx) | Apache-2.0 |
+
+## Licencia
+
+El código de DeskWallpaper se publica con la [licencia MIT](LICENSE). Los modelos de IA y las bibliotecas que usa tienen sus propias licencias (ver arriba).
